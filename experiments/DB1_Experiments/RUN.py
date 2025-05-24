@@ -8,21 +8,6 @@ result_orginal = []
 
 for feat in range(0,42):
     flag = 0
-    if star!=0:
-        accuracy = np.concatenate([result_orginal, result_enhanced])
-        method = ['Raw'] * 20 + ['Enhanced'] * 20
-        subject_ids = np.repeat(np.arange(1, 5), 5) 
-        subject = list(subject_ids) * 2  
-        trial = list(np.tile(np.arange(1, 6), 4)) * 2
-        df = pd.DataFrame({
-            'Accuracy': accuracy,
-            'Method': method,
-            'Subject': subject,
-            'Trial': trial
-        })
-        model = smf.mixedlm("Accuracy ~ Method", df, groups=df["Subject"])
-        result = model.fit()
-        print(result.summary())
     result_enhanced = []
     result_orginal = []
     for orginal in (1,0):
@@ -334,3 +319,17 @@ for feat in range(0,42):
         avg_precision = np.mean([r["precision"] for r in avg_results])
         avg_recall = np.mean([r["recall"] for r in avg_results])
         avg_f1_score = np.mean([r["f1_score"] for r in avg_results])
+    accuracy = np.concatenate([result_orginal, result_enhanced])
+    method = ['Raw'] * 20 + ['Enhanced'] * 20
+    subject_ids = np.repeat(np.arange(1, 5), 5) 
+    subject = list(subject_ids) * 2  
+    trial = list(np.tile(np.arange(1, 6), 4)) * 2
+    df = pd.DataFrame({
+        'Accuracy': accuracy,
+        'Method': method,
+        'Subject': subject,
+        'Trial': trial
+    })
+    model = smf.mixedlm("Accuracy ~ Method", df, groups=df["Subject"])
+    result = model.fit()
+    print(result.summary())
