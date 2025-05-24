@@ -11,11 +11,9 @@ for feat in range(0,42):
     if star!=0:
         accuracy = np.concatenate([result_orginal, result_enhanced])
         method = ['Raw'] * 20 + ['Enhanced'] * 20
-        # 构建 subject 和 trial 编号
-        subject_ids = np.repeat(np.arange(1, 5), 5)  # [1,1,1,1,1,2,2,2,2,2,...]
-        subject = list(subject_ids) * 2  # 每个方法都重复一次
+        subject_ids = np.repeat(np.arange(1, 5), 5) 
+        subject = list(subject_ids) * 2  
         trial = list(np.tile(np.arange(1, 6), 4)) * 2
-        # 构建 DataFrame
         df = pd.DataFrame({
             'Accuracy': accuracy,
             'Method': method,
@@ -27,9 +25,9 @@ for feat in range(0,42):
         print(result.summary())
     result_enhanced = []
     result_orginal = []
-    for orginal in (1,0):#5,10,15,20,25
+    for orginal in (1,0):
         avg_results = []
-        for sub in ("S1","S2","S3","S4"):#"S1","S2","S3","S4"
+        for sub in ("S1","S2","S3","S4"):
             ps=15
             star=1
             WIN_SIZE_MS = 200
@@ -49,7 +47,7 @@ for feat in range(0,42):
             emg = emg.drop(columns="Trigger")
             emg = emg.to_numpy()
             emg = emgkit.preprocessing.bandpass_filter(emg, low_cut=20, high_cut=500, fs=FS)
-            num_blocks = emg.shape[0] // 800  # 计算块数
+            num_blocks = emg.shape[0] // 800  
             processed_blocks = []
             y=[]
             st=time.time()
@@ -309,11 +307,6 @@ for feat in range(0,42):
                     y_test, y_pred_test, target_names=list(s2i_map_gesture.keys()), output_dict=True, digits=5
                 )
                 weighted_avg = report["weighted avg"]
-                # print(
-                #     f"Fold {val_t} - Precision: {weighted_avg['precision']:.5f}, "  # <-- 改成单引号 'precision'
-                #     f"Recall: {weighted_avg['recall']:.5f}, "  # <-- 改成单引号 'recall'
-                #     f"F1-Score: {weighted_avg['f1-score']:.5f}"  # <-- 改成单引号 'f1-score'
-                # )
                 if orginal==1:
                     result_orginal.append(weighted_avg['precision'])
                 else:
@@ -326,7 +319,6 @@ for feat in range(0,42):
                     "recall": weighted_avg["recall"],
                     "f1_score": weighted_avg["f1-score"]
                 })
-            # 计算总平均值
             mean_precision = np.mean([r["precision"] for r in fold_results])
             mean_recall = np.mean([r["recall"] for r in fold_results])
             mean_f1_score = np.mean([r["f1_score"] for r in fold_results])
