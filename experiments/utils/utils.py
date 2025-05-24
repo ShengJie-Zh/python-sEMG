@@ -11,7 +11,7 @@ def segment_signal(sig_, labels_, target_, exclude=False):
     if mask.iloc[-1]:
         end_indices = np.append(end_indices, len(mask))
     for start, end in zip(start_indices, end_indices):
-        chunk = sig_[start:end]  # 提取信号块
+        chunk = sig_[start:end]  
         if len(chunk) > 0:
             chunks_.append(chunk)
     while len(chunks_) < 10:
