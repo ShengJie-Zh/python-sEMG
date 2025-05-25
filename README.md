@@ -1,4 +1,4 @@
-# Code for "A Novel Signal Enhancement Method for sEMG-based Gesture Recognition using PCA Temporal Whitening"
+## Code for "A Novel Signal Enhancement Method for sEMG-based Gesture Recognition using PCA Temporal Whitening"
 
 This repository contains codes for our manuscript:
 
