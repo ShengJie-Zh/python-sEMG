@@ -21,12 +21,11 @@ for feat in range(0,42):
             SEED = 42
             R = fext-1
             SUBJ = sub
-            FEAT = "EMG"
-            emg = load_signal(os.path.join("D:/codes/Adaptive-ICA-sEMG-TBioCAS/scripts/data"), SUBJ, task_type="gesture")
+            emg = load_signal(os.path.join("D:/codes/scripts/data"), SUBJ, task_type="gesture")
             labels = emg["Trigger"]
-            s2i_map = {v: k for k, v in i2s_map_gesture.items()}
+            map = {v: k for k, v in gesture.items()}
             labels1=labels.to_numpy()
-            vec_map = np.vectorize(lambda s: s2i_map[s])
+            vec_map = np.vectorize(lambda s: map[s])
             labels1 = vec_map(labels1)
             # labels_fixed = labels.shift(int(round(4000)), fill_value="rest")
             emg = emg.drop(columns="Trigger")
@@ -289,7 +288,7 @@ for feat in range(0,42):
                 y_pred_train = clf.predict(X_train)
                 y_pred_test = clf.predict(X_test)
                 report = classification_report(
-                    y_test, y_pred_test, target_names=list(s2i_map_gesture.keys()), output_dict=True, digits=5
+                    y_test, y_pred_test, target_names=list(map_gesture.keys()), output_dict=True, digits=5
                 )
                 weighted_avg = report["weighted avg"]
                 if orginal==1:
