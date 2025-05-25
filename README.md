@@ -20,7 +20,7 @@ Currently shared:
 - Sample data preprocessing scripts  
 
 🚧 **Important Notice:**  
-To comply with IEEE TNSRE's double-blind peer review policy, this repository does **not contain the full implementation** of the proposed method. The complete source code will be released **upon final acceptance** of the manuscript.
+This repository does **not currently contain the full implementation** of the proposed method. The complete source code will be released **upon final acceptance** of the manuscript.
 
 ---
 
