@@ -31,7 +31,7 @@ for feat in range(0,42):
             # labels_fixed = labels.shift(int(round(4000)), fill_value="rest")
             emg = emg.drop(columns="Trigger")
             emg = emg.to_numpy()
-            emg = emgkit.preprocessing.bandpass_filter(emg, low_cut=20, high_cut=500, fs=FS)
+            emg = bandpass_filter(emg, low_cut=20, high_cut=500, fs=FS)
             num_blocks = emg.shape[0] // 800  
             processed_blocks = []
             y=[]
@@ -40,7 +40,7 @@ for feat in range(0,42):
                 for i in range(num_blocks):
                     start = i * 800
                     end = (i + 1) * 800
-                    block = emg[start:end, :]  # 获取当前块
+                    block = emg[start:end, :]  
                     processed_block = feature(emg=block,R=R,co_number=200,use_orginal_data=False,trans=True,ps=ps)
                     processed_blocks.append(processed_block)
                 emg = np.transpose(np.concatenate(processed_blocks, 1))
