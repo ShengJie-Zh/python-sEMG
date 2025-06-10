@@ -17,7 +17,7 @@ This work proposes a novel PCA-based temporal whitening method to enhance sEMG s
 
 Currently shared:
 
-- Sample data preprocessing scripts  
+- Sample data processing scripts  
 
 🚧 **Important Notice:**  
 This repository does **not currently contain the full implementation** of the proposed method. The complete source code will be released **upon final acceptance** of the manuscript.
