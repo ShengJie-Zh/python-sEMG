@@ -3,7 +3,7 @@
 This repository contains codes for our manuscript:
 
 **"A Novel Signal Enhancement Method for sEMG-based Gesture Recognition using PCA Temporal Whitening"**  
-(*Under Review at IEEE Transactions on Neural Systems and Rehabilitation Engineering*)
+(*Under Review at IEEE Transactions on Signal Processing*)
 
 ---
 
